@@ -13,6 +13,7 @@ namespace LevelControl
         public static event Action ShowMainMenuUI;
         public static event Action ShowGameplayUI;
         public static event Action StartGameplay;
+        public static event Action ShowDeathUI;
 
         private void Awake()
         {
@@ -53,6 +54,7 @@ namespace LevelControl
                     break;
                 case LevelStates.Death:
                     state = LevelStates.Death;
+                    ShowDeathUI?.Invoke();
                     OnGameStateChanged?.Invoke(this, state);
                     break;
             }
