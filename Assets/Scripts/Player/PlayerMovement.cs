@@ -15,17 +15,22 @@ namespace Player
 
         private bool _correctState = false;
 
-        private void Start()
+        private void Awake()
         {
             LevelStateMachine.Instance.OnGameStateChanged += LevelStateManager_OnGameStateChanged;
         }
 
         private void LevelStateManager_OnGameStateChanged(object sender, LevelStates e)
         {
-            if (e == LevelStates.StartGameplay)
+            if (e == LevelStates.StartGameplay || e == LevelStates.GameplayInProgress)
             {
                 _correctState = true;
                 LevelStateMachine.Instance.state = LevelStates.GameplayInProgress;
+            }
+
+            if (e == LevelStates.LevelEnd || e == LevelStates.Death)
+            {
+                _correctState = false;
             }
         }
 
