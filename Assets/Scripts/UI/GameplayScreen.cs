@@ -13,7 +13,7 @@ public class GameplayScreen : MonoBehaviour
         _playerHp.OnChanged += TakeDamage;
     }
 
-    private void TakeDamage(int d)
+    private void TakeDamage(int damage)
     {
         for (int i = 0; i < _lightImages.Length; i++)
         {

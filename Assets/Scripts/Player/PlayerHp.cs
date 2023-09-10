@@ -1,4 +1,5 @@
 ﻿using System;
+using LevelControl;
 using UnityEngine;
 
 namespace Player
@@ -27,6 +28,7 @@ namespace Player
             if (CurrentHp <= 0)
             {
                 PlayerDead?.Invoke();
+                LevelStateMachine.Instance.state = LevelStates.Death;
             }
         }
 

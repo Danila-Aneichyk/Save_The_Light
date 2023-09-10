@@ -11,6 +11,7 @@ public class DeathScreen : MonoBehaviour
 
     [Header("Components")]
     [SerializeField] private GameObject _mainMenuScreen;
+    [SerializeField] private GameObject _deathScreen;
 
     private void Awake()
     {
@@ -22,7 +23,7 @@ public class DeathScreen : MonoBehaviour
 
     private void ShowDeathScreen()
     {
-        gameObject.SetActive(true);
+        _deathScreen.SetActive(true);
     }
 
     private void RetryLevel()
