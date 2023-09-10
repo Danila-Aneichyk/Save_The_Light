@@ -10,10 +10,10 @@ namespace Player
         private void Awake()
         {
             _playerHp = GetComponent<PlayerHp>();
-            _playerHp.OnChanged += Death;
+            _playerHp.PlayerDead += Death;
         }
 
-        private void Death(int damage)
+        private void Death()
         {
             if (_playerHp.CurrentHp <= 0)
             {

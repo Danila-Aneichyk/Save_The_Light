@@ -43490,6 +43490,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1061568530}
+  - component: {fileID: 1061568531}
   m_Layer: 5
   m_Name: GameplayUI
   m_TagString: Untagged
@@ -43518,6 +43519,25 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1242, y: 2208}
   m_Pivot: {x: 0.5, y: 1}
+--- !u!114 &1061568531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1061568529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e910b65ea44433f8af27d1cf43adafe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _lightImages:
+  - {fileID: 1469241965}
+  - {fileID: 309715133}
+  - {fileID: 870803324}
+  - {fileID: 520688145}
+  - {fileID: 1349696006}
+  - {fileID: 468142737}
 --- !u!1001 &1062914284
 PrefabInstance:
   m_ObjectHideFlags: 0
