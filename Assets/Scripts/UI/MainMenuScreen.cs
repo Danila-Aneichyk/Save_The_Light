@@ -1,6 +1,4 @@
-using Names;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MainMenuScreen : MonoBehaviour
@@ -12,6 +10,7 @@ public class MainMenuScreen : MonoBehaviour
 
     [Header("Components to open")]
     [SerializeField] private GameObject _questionWindow;
+    [SerializeField] private GameObject _mainMenuScreen;
 
     private void Awake()
     {
@@ -22,7 +21,7 @@ public class MainMenuScreen : MonoBehaviour
 
     private void LoadGameplayScene()
     {
-        SceneManager.LoadScene(SceneIndexes.Gameplay);
+        _mainMenuScreen.SetActive(false);
     }
 
     private void OpenQuestionWindow()
