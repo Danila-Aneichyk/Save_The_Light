@@ -22,6 +22,7 @@ namespace Player
         public void ApplyDamage(int damage)
         {
             CurrentHp = Mathf.Max(0, CurrentHp - damage);
+            Debug.Log($"Current HP is {CurrentHp}");
             OnChanged?.Invoke(CurrentHp);
         }
 
