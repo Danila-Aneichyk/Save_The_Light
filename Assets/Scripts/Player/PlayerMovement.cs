@@ -1,3 +1,4 @@
+using LevelControl;
 using UnityEngine;
 
 namespace Player
@@ -6,14 +7,33 @@ namespace Player
     {
         [Header("Movement values")]
         private float _speed = 7.0f;
-        private Vector3 direction = -Vector3.left;
+        private Vector3 direction = Vector3.right;
 
         [Header("Jump values")]
         public float jumpForce = 10f;
         private bool isGrounded = true;
 
-        void Update()
+        private bool _correctState = false;
+
+        private void Start()
         {
+            LevelStateMachine.Instance.OnGameStateChanged += LevelStateManager_OnGameStateChanged;
+        }
+
+        private void LevelStateManager_OnGameStateChanged(object sender, LevelStates e)
+        {
+            if (e == LevelStates.StartGameplay)
+            {
+                _correctState = true;
+                LevelStateMachine.Instance.state = LevelStates.GameplayInProgress;
+            }
+        }
+
+        private void Update()
+        {
+            if (_correctState != true)
+                return;
+
             Move();
             Jump();
         }
