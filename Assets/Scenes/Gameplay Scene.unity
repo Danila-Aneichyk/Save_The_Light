@@ -18622,8 +18622,6 @@ MonoBehaviour:
   - {fileID: 8253692862514827318}
   - {fileID: 1626036224}
   - {fileID: 1892777028}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 1867162648}
   - {fileID: 1369930360}
   - {fileID: 1331202804}
@@ -18643,8 +18641,6 @@ MonoBehaviour:
   - {fileID: 1401659326}
   - {fileID: 979483317}
   - {fileID: 1350065138}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!4 &482205336
 Transform:
   m_ObjectHideFlags: 0

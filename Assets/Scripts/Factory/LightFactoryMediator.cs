@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using LevelControl;
+using UnityEngine;
 
 namespace Factory
 {
@@ -7,23 +8,28 @@ namespace Factory
         [Header("Target Factory")]
         private LightFactory _lightFactory;
         [SerializeField] private LightMarker[] _lightMarkers;
+        private bool _allLightsCreated;
 
         public void Start()
         {
+            LevelStateMachine.Instance.OnGameStateChanged += LevelStateMachine_OnGameStateChanged;
             _lightFactory = GetComponent<LightFactory>();
             _lightFactory.Load();
         }
 
-        private void Update()
+        private void LevelStateMachine_OnGameStateChanged(object sender, LevelStates e)
         {
-            TargetCreating();
+            if (e == LevelStates.StartGameplay)
+            {
+                TargetCreating();
+            }
         }
 
         private void TargetCreating()
         {
-            foreach (LightMarker lightMarker in _lightMarkers)
+            for (int i = 0; i < _lightMarkers.Length; i++)
             {
-                _lightFactory.Create(lightMarker.transform.position);
+                _lightFactory.Create(_lightMarkers[i].transform.position);
             }
         }
     }
