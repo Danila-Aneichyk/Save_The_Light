@@ -28730,6 +28730,9 @@ MonoBehaviour:
   - {fileID: 468142737}
   _score: {fileID: 2128119137}
   _scoreLabel: {fileID: 1135860849}
+  _amountOfHearts: 6
+  FullHeart: {fileID: 21300000, guid: 0d898b7275256394e9c766d9f23a6841, type: 3}
+  EmptyHeart: {fileID: 21300000, guid: 3380553f913f5034e8c014040e66c527, type: 3}
 --- !u!1001 &717853420
 PrefabInstance:
   m_ObjectHideFlags: 0

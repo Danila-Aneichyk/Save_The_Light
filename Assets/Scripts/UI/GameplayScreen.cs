@@ -1,5 +1,4 @@
-﻿using System;
-using LevelControl;
+﻿using LevelControl;
 using Player;
 using ScoreSystem;
 using TMPro;
@@ -12,16 +11,14 @@ public class GameplayScreen : MonoBehaviour
     [SerializeField] private ScoreStatistics _score;
     [SerializeField] private TextMeshProUGUI _scoreLabel;
     private PlayerHp _playerHp;
-    [SerializeField] private int _amountOfHearts;
-    [SerializeField] private Sprite FullHeart;
-    [SerializeField] private Sprite EmptyHeart;
+    private bool _isLightEnabled = false;
 
     private void Awake()
     {
         SetOnLightImages();
         _playerHp = FindObjectOfType<PlayerHp>();
-        //  _playerHp.OnApplyDamage += TakeDamage;
-        //  _playerHp.OnApplyHeal += TakeHeal;
+        _playerHp.OnApplyDamage += TakeDamage;
+        _playerHp.OnApplyHeal += TakeHeal;
         LevelStateMachine.ResetValues += SetOnLightImages;
     }
 
@@ -36,23 +33,6 @@ public class GameplayScreen : MonoBehaviour
     private void Update()
     {
         PerformScore();
-        ControlLightAmount();
-    }
-
-    private void ControlLightAmount()
-    {
-        int healthPoints = _playerHp.CurrentHp;
-        if (healthPoints > _playerHp.CurrentHp)
-        {
-            healthPoints = _amountOfHearts;
-        }
-
-        for (int i = 0; i < _lightImages.Length; i++)
-        {
-            _lightImages[i].sprite = i < Mathf.RoundToInt(healthPoints) ? FullHeart : EmptyHeart;
-
-            _lightImages[i].enabled = i < _amountOfHearts;
-        }
     }
 
     private void PerformScore()
@@ -60,7 +40,7 @@ public class GameplayScreen : MonoBehaviour
         _scoreLabel.text = $"Score: {_score.CurrentScore}";
     }
 
-    /*private void TakeDamage()
+    private void TakeDamage()
     {
         for (int i = 0; i < _lightImages.Length; i++)
         {
@@ -79,15 +59,10 @@ public class GameplayScreen : MonoBehaviour
     {
         for (int i = 0; i < _lightImages.Length; i++)
         {
-            if (i > _playerHp.CurrentHp)
-            {
-                _lightImages[i].enabled = true;
-            }
-
-            if (i > _playerHp.CurrentHp)
+            if (i == _playerHp.CurrentHp + 1)
             {
                 _lightImages[i].enabled = true;
             }
         }
-    }*/
+    }
 }

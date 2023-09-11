@@ -37,7 +37,7 @@ namespace Player
 
         public void ApplyHeal(int heal)
         {
-            CurrentHp = Mathf.Min(_maxHp, CurrentHp - heal);
+            CurrentHp = Mathf.Min(_maxHp, CurrentHp + heal);
             OnChanged?.Invoke(CurrentHp);
             OnApplyHeal?.Invoke();
         }
