@@ -1,4 +1,5 @@
-﻿using Player;
+﻿using LevelControl;
+using Player;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,6 +13,7 @@ public class GameplayScreen : MonoBehaviour
         SetOnLightImages();
         _playerHp = FindObjectOfType<PlayerHp>();
         _playerHp.OnChanged += TakeDamage;
+        LevelStateMachine.ResetValues += SetOnLightImages;
     }
 
     private void SetOnLightImages()
