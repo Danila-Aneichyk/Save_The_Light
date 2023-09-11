@@ -9,8 +9,17 @@ public class GameplayScreen : MonoBehaviour
 
     private void Awake()
     {
+        SetOnLightImages();
         _playerHp = FindObjectOfType<PlayerHp>();
         _playerHp.OnChanged += TakeDamage;
+    }
+
+    private void SetOnLightImages()
+    {
+        foreach (Image lightImage in _lightImages)
+        {
+            lightImage.enabled = true;
+        }
     }
 
     private void TakeDamage(int damage)

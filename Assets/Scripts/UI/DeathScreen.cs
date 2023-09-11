@@ -28,16 +28,15 @@ public class DeathScreen : MonoBehaviour
 
     private void RetryLevel()
     {
-        gameObject.SetActive(false);
+        LevelStateMachine.Instance.state = LevelStates.StartGameplay;
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentSceneIndex);
-        LevelStateMachine.Instance.state = LevelStates.StartGameplay;
     }
 
     private void ToHome()
     {
-        gameObject.SetActive(false);
-        _mainMenuScreen.SetActive(true);
         LevelStateMachine.Instance.state = LevelStates.MainMenu;
+        _mainMenuScreen.SetActive(true);
+        _deathScreen.SetActive(false);
     }
 }
