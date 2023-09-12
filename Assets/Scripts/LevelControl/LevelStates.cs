@@ -2,7 +2,7 @@
 {
     public enum LevelStates
     {
-        MainMenu,
+        MainMenu,   
         StartGameplay,
         GameplayInProgress,
         LevelEnd,

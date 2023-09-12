@@ -16,6 +16,7 @@ namespace LevelControl
         [Header("Initial values")]
         [SerializeField] private Transform _initialPosition;
         private int _initialScore = 0;
+        public int _score;
 
         private void Awake()
         {
@@ -44,6 +45,7 @@ namespace LevelControl
 
         private void ResetScore()
         {
+            _scoreStatistics.CurrentScore = _score;
             _scoreStatistics.CurrentScore = _initialScore;
         }
     }
