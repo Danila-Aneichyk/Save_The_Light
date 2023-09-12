@@ -1,36 +1,50 @@
-﻿using LevelControl;
-using Player;
+﻿using Player;
+using ScoreSystem;
 using UnityEngine;
 
-public class ResetLevel : MonoBehaviour
+namespace LevelControl
 {
-    [Header("Player components")]
-    private PlayerHp _playerHp;
-    private PlayerMovement _playerMovement;
-
-    [Header("Initial values")]
-    [SerializeField] private Transform _initialPosition;
-
-    private void Awake()
+    public class ResetLevel : MonoBehaviour
     {
-        LevelStateMachine.ResetValues += ResetLevelValues;
-        _playerHp = FindObjectOfType<PlayerHp>();
-        _playerMovement = FindObjectOfType<PlayerMovement>();
-    }
+        [Header("Player components")]
+        private PlayerHp _playerHp;
+        private PlayerMovement _playerMovement;
 
-    private void ResetLevelValues()
-    {
-        ResetPosition();
-        ResetHp();
-    }
+        [Header("Score statistic")]
+        private ScoreStatistics _scoreStatistics;
 
-    private void ResetHp()
-    {
-        _playerHp.CurrentHp = _playerHp.MaxHp;
-    }
+        [Header("Initial values")]
+        [SerializeField] private Transform _initialPosition;
+        private int _initialScore = 0;
 
-    private void ResetPosition()
-    {
-        _playerMovement.transform.position = _initialPosition.transform.position;
+        private void Awake()
+        {
+            LevelStateMachine.ResetValues += ResetLevelValues;
+            _playerHp = FindObjectOfType<PlayerHp>();
+            _playerMovement = FindObjectOfType<PlayerMovement>();
+            _scoreStatistics = FindObjectOfType<ScoreStatistics>();
+        }
+
+        private void ResetLevelValues()
+        {
+            ResetPosition();
+            ResetHp();
+            ResetScore();
+        }
+
+        private void ResetHp()
+        {
+            _playerHp.CurrentHp = _playerHp.MaxHp;
+        }
+
+        private void ResetPosition()
+        {
+            _playerMovement.transform.position = _initialPosition.transform.position;
+        }
+
+        private void ResetScore()
+        {
+            _scoreStatistics.CurrentScore = _initialScore;
+        }
     }
 }
