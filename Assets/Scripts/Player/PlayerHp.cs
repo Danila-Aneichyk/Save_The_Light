@@ -10,6 +10,8 @@ namespace Player
         [SerializeField] private int _maxHp;
 
         public event Action<int> OnChanged;
+        public event Action OnApplyDamage;
+        public event Action OnApplyHeal;
         public event Action PlayerDead;
 
         public int CurrentHp { get; set; }
@@ -25,6 +27,7 @@ namespace Player
         {
             CurrentHp = Mathf.Max(0, CurrentHp - damage);
             OnChanged?.Invoke(CurrentHp);
+            OnApplyDamage?.Invoke();
             if (CurrentHp <= 0)
             {
                 PlayerDead?.Invoke();
@@ -34,8 +37,9 @@ namespace Player
 
         public void ApplyHeal(int heal)
         {
-            CurrentHp = Mathf.Min(_maxHp, CurrentHp - heal);
+            CurrentHp = Mathf.Min(_maxHp, CurrentHp + heal);
             OnChanged?.Invoke(CurrentHp);
+            OnApplyHeal?.Invoke();
         }
     }
 }

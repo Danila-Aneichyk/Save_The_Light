@@ -15,7 +15,7 @@ namespace Player
 
         private bool _correctState = false;
 
-        private void Awake()
+        private void Start()
         {
             LevelStateMachine.Instance.OnGameStateChanged += LevelStateManager_OnGameStateChanged;
         }

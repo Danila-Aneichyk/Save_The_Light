@@ -3,7 +3,7 @@ using Names;
 using Player;
 using UnityEngine;
 
-namespace Water
+namespace Objects
 {
     public class Water : MonoBehaviour
     {
@@ -13,7 +13,6 @@ namespace Water
         {
             if (other.gameObject.CompareTag(Tags.Player))
             {
-                Debug.Log("Collision detected");
                 other.gameObject.GetComponentInParent<PlayerHp>().ApplyDamage(_damage);
             }
         }
