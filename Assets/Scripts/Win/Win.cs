@@ -1,5 +1,4 @@
-﻿using System;
-using LevelControl;
+﻿using LevelControl;
 using Names;
 using Player;
 using UnityEngine;
@@ -11,6 +10,11 @@ namespace Win
         private PlayerMovement _playerMovement;
 
         private bool _isWin = false;
+
+        private void Awake()
+        {
+            LevelStateMachine.OnWinLevel += StopGameplay;
+        }
 
         private void OnTriggerEnter(Collider other)
         {
