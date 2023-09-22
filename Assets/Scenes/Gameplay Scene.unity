@@ -45231,6 +45231,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WinPlatform
       objectReference: {fileID: 0}
+    - target: {fileID: 3880940211865771186, guid: 23d958e46bfbe014a9f0c15a2ff9a5fe, type: 3}
+      propertyPath: m_TagString
+      value: WinPlatform
+      objectReference: {fileID: 0}
     - target: {fileID: 3880940211865771197, guid: 23d958e46bfbe014a9f0c15a2ff9a5fe, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -93695,7 +93699,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-3340
+  m_Name: pb_Mesh-3402
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
