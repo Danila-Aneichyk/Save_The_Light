@@ -29425,6 +29425,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _winScreen: {fileID: 2015606860}
+  _mainMenuScreen: {fileID: 685758344}
+  _retryButton: {fileID: 895260317}
+  _homeButton: {fileID: 518535738}
 --- !u!1001 &717853420
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -82648,6 +82651,23 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4751350922918579307, guid: 008fba09644e9974595fab13220b543a, type: 3}
   m_PrefabInstance: {fileID: 264707019}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1818715763 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3880940211865771186, guid: 23d958e46bfbe014a9f0c15a2ff9a5fe, type: 3}
+  m_PrefabInstance: {fileID: 1052270849}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1818715768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1818715763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69d7c9b793a44b3ba7d27852c06e20cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &1829303802
 Mesh:
   m_ObjectHideFlags: 0
@@ -90424,7 +90444,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2015606861
 RectTransform:
   m_ObjectHideFlags: 0
