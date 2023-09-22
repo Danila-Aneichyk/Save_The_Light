@@ -16,11 +16,11 @@ namespace Win
             LevelStateMachine.OnWinLevel += StopGameplay;
         }
 
-        private void OnTriggerEnter(Collider other)
+        private void OnCollisionEnter(Collision col)
         {
-            if (other.gameObject.CompareTag(Tags.Player))
+            if (col.gameObject.CompareTag(Tags.Player))
             {
-                other.gameObject.GetComponent<PlayerMovement>();
+                _playerMovement = col.gameObject.GetComponentInParent<PlayerMovement>();
                 _isWin = true;
                 LevelStateMachine.Instance.state = LevelStates.LevelEnd;
             }
