@@ -6,6 +6,7 @@ namespace Objects
 {
     public class Torch : MonoBehaviour
     {
+        private float _maxLightIntensity = 5f;
         private Light _light;
         private PlayerHp _playerHp;
 
@@ -21,6 +22,11 @@ namespace Objects
         private void PlusLight()
         {
             _light.intensity = _light.intensity + 0.16f;
+
+            if (_maxLightIntensity < _light.intensity)
+            {
+                _light.intensity = _maxLightIntensity;
+            }
         }
 
         private void MinusLight()
