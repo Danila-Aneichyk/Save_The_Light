@@ -26,12 +26,15 @@ namespace LevelControl
 
         private void Awake()
         {
-            _eventBus = ServiceLocator.Current.Get<EventBus>();
-            _eventBus.Subscribe<ResetValuesSignal>(ResetLevelValues);
-
             _playerHp = FindObjectOfType<PlayerHp>();
             _playerMovement = FindObjectOfType<PlayerMovement>();
             _scoreStatistics = FindObjectOfType<ScoreStatistics>();
+        }
+
+        private void Start()
+        {
+            _eventBus = ServiceLocator.Current.Get<EventBus>();
+            _eventBus.Subscribe<ResetValuesSignal>(ResetLevelValues);
         }
 
         private void ResetLevelValues(ResetValuesSignal signal)

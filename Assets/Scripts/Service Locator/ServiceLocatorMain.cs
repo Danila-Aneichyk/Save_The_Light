@@ -20,11 +20,5 @@ namespace Service_Locator
 
             ServiceLocator.Current.Register(_eventBus);
         }
-
-        private void Init()
-        {
-            
-            
-        }
     }
 }

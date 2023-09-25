@@ -22,12 +22,15 @@ public class DeathScreen : MonoBehaviour
 
     private void Awake()
     {
-        _eventBus = ServiceLocator.Current.Get<EventBus>();
-        _eventBus.Subscribe<ShowDeathUISignal>(ShowDeathScreen);
-
         _resetLevel = FindObjectOfType<ResetLevel>();
         _retryButton.onClick.AddListener(RetryLevel);
         _homeButton.onClick.AddListener(ToHome);
+    }
+
+    private void Start()
+    {
+        _eventBus = ServiceLocator.Current.Get<EventBus>();
+        _eventBus.Subscribe<ShowDeathUISignal>(ShowDeathScreen);
     }
 
     private void ShowDeathScreen(ShowDeathUISignal signal)

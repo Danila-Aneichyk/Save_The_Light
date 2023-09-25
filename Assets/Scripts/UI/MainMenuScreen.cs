@@ -1,3 +1,4 @@
+using System;
 using Event_Bus;
 using Event_Bus.ActionSignals;
 using LevelControl;
@@ -20,14 +21,17 @@ public class MainMenuScreen : MonoBehaviour
 
     private void Awake()
     {
-        _eventBus = ServiceLocator.Current.Get<EventBus>();
-
-        _eventBus.Subscribe<ShowMainMenuUISignal>(OpenMainMenu);
         LevelStateMachine.Instance.state = LevelStates.MainMenu;
 
         _startButton.onClick.AddListener(LoadGameplayScene);
         _questionButton.onClick.AddListener(OpenQuestionWindow);
         _OkButton.onClick.AddListener(CloseQuestionWindow);
+    }
+
+    private void Start()
+    {
+        _eventBus = ServiceLocator.Current.Get<EventBus>();
+        _eventBus.Subscribe<ShowMainMenuUISignal>(OpenMainMenu);
     }
 
     private void OpenMainMenu(ShowMainMenuUISignal signal)

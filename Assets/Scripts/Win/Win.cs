@@ -16,7 +16,7 @@ namespace Win
 
         private EventBus _eventBus;
 
-        private void Awake()
+        private void Start()
         {
             _eventBus = ServiceLocator.Current.Get<EventBus>();
             _eventBus.Subscribe<OnWinLevelSignal>(StopGameplay);

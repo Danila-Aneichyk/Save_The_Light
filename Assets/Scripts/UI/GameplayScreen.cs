@@ -1,6 +1,5 @@
 ﻿using Event_Bus;
 using Event_Bus.ActionSignals;
-using LevelControl;
 using Player;
 using ScoreSystem;
 using Service_Locator;
@@ -20,11 +19,14 @@ public class GameplayScreen : MonoBehaviour
 
     private void Awake()
     {
-        _eventBus = ServiceLocator.Current.Get<EventBus>();
-
         _playerHp = FindObjectOfType<PlayerHp>();
         _playerHp.OnApplyDamage += TakeDamage;
         _playerHp.OnApplyHeal += TakeHeal;
+    }
+
+    private void Start()
+    {
+        _eventBus = ServiceLocator.Current.Get<EventBus>();
         _eventBus.Subscribe<ResetValuesSignal>(SetOnLightImages);
     }
 

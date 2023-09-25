@@ -19,11 +19,14 @@ public class WinScreen : MonoBehaviour
 
     private void Awake()
     {
-        _eventBus = ServiceLocator.Current.Get<EventBus>();
-        _eventBus.Subscribe<OnWinLevelSignal>(ShowWinScreen);
-
         _retryButton.onClick.AddListener(RetryLevel);
         _homeButton.onClick.AddListener(ToHome);
+    }
+
+    private void Start()
+    {
+        _eventBus = ServiceLocator.Current.Get<EventBus>();
+        _eventBus.Subscribe<OnWinLevelSignal>(ShowWinScreen);
     }
 
     private void ShowWinScreen(OnWinLevelSignal signal)
