@@ -2,7 +2,7 @@
 
 namespace Factory
 {
-    public class LightFactory : MonoBehaviour
+    public class LightFactory : MonoBehaviour, ILightFactory
     {
         [SerializeField] private Object _healLight;
 
@@ -13,7 +13,7 @@ namespace Factory
             _healLight = Resources.Load(HealLight) as GameObject;
         }
 
-        public void Create(Vector3 lightPosition)
+        public void Create(LightType lightType, Vector3 lightPosition)
         {
             Instantiate(_healLight, lightPosition, Quaternion.identity);
         }
