@@ -12,7 +12,7 @@ namespace LevelControl
 
         public LevelStates state;
         public event EventHandler<LevelStates> OnGameStateChanged;
-        
+
         private EventBus _eventBus;
 
         private void Awake()
@@ -33,21 +33,21 @@ namespace LevelControl
             {
                 case LevelStates.MainMenu:
                     //ShowMainMenuUI?.Invoke();
-                    _eventBus.Invoke(new ShowMainMenuUISignal());
+                    ShowMainMenu();
                     state = LevelStates.MainMenu;
                     OnGameStateChanged?.Invoke(this, state);
                     break;
 
                 case LevelStates.StartGameplay:
                     //ShowGameplayUI?.Invoke();
-                    _eventBus.Invoke(new ShowGameplayUISignal());
+                    ShowGameplayUI();
                     state = LevelStates.StartGameplay;
                     OnGameStateChanged?.Invoke(this, state);
                     break;
 
                 case LevelStates.GameplayInProgress:
                     //StartGameplay?.Invoke();
-                    _eventBus.Invoke(new StartGameplaySignal());
+                    StartGameplay();
                     state = LevelStates.GameplayInProgress;
                     OnGameStateChanged?.Invoke(this, state);
                     break;
@@ -55,7 +55,7 @@ namespace LevelControl
                 case LevelStates.LevelEnd:
                     state = LevelStates.LevelEnd;
                     //OnWinLevel?.Invoke();
-                    _eventBus.Invoke(new OnWinLevelSignal());
+                    OnWinLevel();
                     OnGameStateChanged?.Invoke(this, state);
                     break;
 
@@ -63,11 +63,41 @@ namespace LevelControl
                     state = LevelStates.Death;
                     //ShowDeathUI?.Invoke();
                     //ResetValues?.Invoke();
-                    _eventBus.Invoke(new ShowDeathUISignal());
-                    _eventBus.Invoke(new ResetValuesSignal());
+                    ShowDeathUI();
+                    ResetValues();
                     OnGameStateChanged?.Invoke(this, state);
                     break;
             }
+        }
+
+        private void ShowMainMenu()
+        {
+            _eventBus.Invoke(new ShowMainMenuUISignal());
+        }
+
+        private void ShowGameplayUI()
+        {
+            _eventBus.Invoke(new ShowGameplayUISignal());
+        }
+
+        private void StartGameplay()
+        {
+            _eventBus.Invoke(new StartGameplaySignal());
+        }
+
+        private void OnWinLevel()
+        {
+            _eventBus.Invoke(new OnWinLevelSignal());
+        }
+
+        private void ShowDeathUI()
+        {
+            _eventBus.Invoke(new ShowDeathUISignal());
+        }
+
+        private void ResetValues()
+        {
+            _eventBus.Invoke(new ResetValuesSignal());
         }
     }
 }
