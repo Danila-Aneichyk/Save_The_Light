@@ -1,6 +1,8 @@
-﻿using LevelControl;
+﻿using Event_Bus;
+using Event_Bus.ActionSignals;
 using Player;
 using ScoreSystem;
+using Service_Locator;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,16 +15,22 @@ public class GameplayScreen : MonoBehaviour
     private PlayerHp _playerHp;
     private bool _isLightEnabled = false;
 
+    private EventBus _eventBus;
+
     private void Awake()
     {
-        SetOnLightImages();
         _playerHp = FindObjectOfType<PlayerHp>();
         _playerHp.OnApplyDamage += TakeDamage;
         _playerHp.OnApplyHeal += TakeHeal;
-        LevelStateMachine.ResetValues += SetOnLightImages;
     }
 
-    private void SetOnLightImages()
+    private void Start()
+    {
+        _eventBus = ServiceLocator.Current.Get<EventBus>();
+        _eventBus.Subscribe<ResetValuesSignal>(SetOnLightImages);
+    }
+
+    private void SetOnLightImages(ResetValuesSignal signal)
     {
         foreach (Image lightImage in _lightImages)
         {

@@ -9,6 +9,7 @@ namespace Factory
         private LightFactory _lightFactory;
         [SerializeField] private LightMarker[] _lightMarkers;
         private bool _allLightsCreated;
+        private LightType _lightType;
 
         public void Start()
         {
@@ -29,7 +30,7 @@ namespace Factory
         {
             for (int i = 0; i < _lightMarkers.Length; i++)
             {
-                _lightFactory.Create(_lightMarkers[i].transform.position);
+                _lightFactory.Create(_lightType, _lightMarkers[i].transform.position);
             }
         }
     }

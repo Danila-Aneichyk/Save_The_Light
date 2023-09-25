@@ -1,5 +1,8 @@
-﻿using Player;
+﻿using Event_Bus;
+using Event_Bus.ActionSignals;
+using Player;
 using ScoreSystem;
+using Service_Locator;
 using UnityEngine;
 
 namespace LevelControl
@@ -16,17 +19,25 @@ namespace LevelControl
         [Header("Initial values")]
         [SerializeField] private Transform _initialPosition;
         private int _initialScore = 0;
+
         public int _score;
+
+        private EventBus _eventBus;
 
         private void Awake()
         {
-            LevelStateMachine.ResetValues += ResetLevelValues;
             _playerHp = FindObjectOfType<PlayerHp>();
             _playerMovement = FindObjectOfType<PlayerMovement>();
             _scoreStatistics = FindObjectOfType<ScoreStatistics>();
         }
 
-        private void ResetLevelValues()
+        private void Start()
+        {
+            _eventBus = ServiceLocator.Current.Get<EventBus>();
+            _eventBus.Subscribe<ResetValuesSignal>(ResetLevelValues);
+        }
+
+        private void ResetLevelValues(ResetValuesSignal signal)
         {
             ResetPosition();
             ResetHp();

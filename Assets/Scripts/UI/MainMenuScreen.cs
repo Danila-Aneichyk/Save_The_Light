@@ -1,4 +1,8 @@
+using System;
+using Event_Bus;
+using Event_Bus.ActionSignals;
 using LevelControl;
+using Service_Locator;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,17 +17,24 @@ public class MainMenuScreen : MonoBehaviour
     [SerializeField] private GameObject _questionWindow;
     [SerializeField] private GameObject _mainMenuScreen;
 
+    private EventBus _eventBus;
+
     private void Awake()
     {
         LevelStateMachine.Instance.state = LevelStates.MainMenu;
-        LevelStateMachine.ShowMainMenuUI += OpenMainMenu;
 
         _startButton.onClick.AddListener(LoadGameplayScene);
         _questionButton.onClick.AddListener(OpenQuestionWindow);
         _OkButton.onClick.AddListener(CloseQuestionWindow);
     }
 
-    private void OpenMainMenu()
+    private void Start()
+    {
+        _eventBus = ServiceLocator.Current.Get<EventBus>();
+        _eventBus.Subscribe<ShowMainMenuUISignal>(OpenMainMenu);
+    }
+
+    private void OpenMainMenu(ShowMainMenuUISignal signal)
     {
         _mainMenuScreen.SetActive(true);
     }
