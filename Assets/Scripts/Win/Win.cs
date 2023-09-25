@@ -1,6 +1,9 @@
-﻿using LevelControl;
+﻿using Event_Bus;
+using Event_Bus.ActionSignals;
+using LevelControl;
 using Names;
 using Player;
+using Service_Locator;
 using UnityEngine;
 
 namespace Win
@@ -11,9 +14,12 @@ namespace Win
 
         private bool _isWin = false;
 
+        private EventBus _eventBus;
+
         private void Awake()
         {
-            LevelStateMachine.OnWinLevel += StopGameplay;
+            _eventBus = ServiceLocator.Current.Get<EventBus>();
+            _eventBus.Subscribe<OnWinLevelSignal>(StopGameplay);
         }
 
         private void OnCollisionEnter(Collision col)
@@ -26,7 +32,7 @@ namespace Win
             }
         }
 
-        private void StopGameplay()
+        private void StopGameplay(OnWinLevelSignal signal)
         {
             _playerMovement.enabled = false;
         }

@@ -1,4 +1,7 @@
-﻿using LevelControl;
+﻿using Event_Bus;
+using Event_Bus.ActionSignals;
+using LevelControl;
+using Service_Locator;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,14 +15,18 @@ public class WinScreen : MonoBehaviour
     [SerializeField] private Button _retryButton;
     [SerializeField] private Button _homeButton;
 
+    private EventBus _eventBus;
+
     private void Awake()
     {
-        LevelStateMachine.OnWinLevel += ShowWinScreen;
+        _eventBus = ServiceLocator.Current.Get<EventBus>();
+        _eventBus.Subscribe<OnWinLevelSignal>(ShowWinScreen);
+
         _retryButton.onClick.AddListener(RetryLevel);
         _homeButton.onClick.AddListener(ToHome);
     }
 
-    private void ShowWinScreen()
+    private void ShowWinScreen(OnWinLevelSignal signal)
     {
         _winScreen.SetActive(true);
     }

@@ -1,5 +1,7 @@
-﻿using LevelControl;
-using ScoreSystem;
+﻿using Event_Bus;
+using Event_Bus.ActionSignals;
+using LevelControl;
+using Service_Locator;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,15 +18,19 @@ public class DeathScreen : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _scoreLabel;
     private ResetLevel _resetLevel;
 
+    private EventBus _eventBus;
+
     private void Awake()
     {
-        LevelStateMachine.ShowDeathUI += ShowDeathScreen;
+        _eventBus = ServiceLocator.Current.Get<EventBus>();
+        _eventBus.Subscribe<ShowDeathUISignal>(ShowDeathScreen);
+
         _resetLevel = FindObjectOfType<ResetLevel>();
         _retryButton.onClick.AddListener(RetryLevel);
         _homeButton.onClick.AddListener(ToHome);
     }
 
-    private void ShowDeathScreen()
+    private void ShowDeathScreen(ShowDeathUISignal signal)
     {
         _deathScreen.SetActive(true);
         ShowScoreText();
